@@ -44,7 +44,7 @@ cd cosmos/bin
 ```
 
 ## Open the Source Code
-- Start Visual Studio Code
+- Start Visual Studio Code. [ Docker](https://code.visualstudio.com/)
 - Install extensions: 'Docker' and 'Remote Containers'
 - Click 'Open a Remote Window' on the bottom left corner of Visual Studio Code. 
 - Select 'Attach to Running Container'. Select the cosmos container
