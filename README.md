@@ -23,20 +23,20 @@ cd ~/cosmos
 docker build -t cosmos .
 ```
 
-Once the build has been completed or you have pulled the Docker container, run the 'cosmos' container:
+Once the build has been completed, run the 'cosmos' container:
 
 ```
 docker run -it cosmos
 ```
 
-Let's start agent_001 and agent_002 to quikcly test some cosmos features:
+Let's start agent_001 and agent_002 to test some cosmos features:
 
 ```
 cd cosmos/bin
 ./agent_001
 ```
 
-now let's open  new terminal window to start agent_002:
+now open a new terminal window to start agent_002:
 ```
 docker run -it cosmos
 cd cosmos/bin
