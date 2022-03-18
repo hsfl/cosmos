@@ -7,3 +7,21 @@ COSMOS is a system that is designed to primarily support the development and ope
 
 **Visit the COSMOS Website to get started:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
 
+## Quick Installation Guide
+
+We recommend installing COSMOS via Docker:
+
+* [Docker](https://www.docker.com/)
+
+Once you have docker clone the cosmos-installer
+
+```shell
+git clone https://github.com/hsfl/cosmos-installer.git ~/cosmos
+```
+
+To build the docker go into the cosmos folder and run the build command (this step may take several minutes to complete):
+
+```bash
+$ cd ~/cosmos
+$ docker build -t cosmos .
+```
