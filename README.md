@@ -25,7 +25,6 @@ To build the docker go into the cosmos folder and run the build command (this st
 $ cd ~/cosmos
 $ docker build -t cosmos .
 ```
-Once the docker image has been made
 
 Once the build has been completed or you have pulled the Docker container, run the 'cosmos' container:
 
