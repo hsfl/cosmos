@@ -38,14 +38,14 @@ docker run -it cosmos
 Let's start agent_001 and agent_002 to test some cosmos features:
 
 ```
-cd cosmos/bin
+cd bin
 ./agent_001
 ```
 
 now open a new terminal window to start agent_002:
 ```
 docker run -it cosmos
-cd cosmos/bin
+cd bin
 ./agent_002
 ```
 
