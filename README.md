@@ -10,10 +10,16 @@ We recommend installing COSMOS via Docker:
 
 * [Get Started with Docker](https://www.docker.com/get-started/)
 
-Once you have docker let's clone the cosmos-installer. Open your terminal window, copy and run the following command: 
+Once you have docker let's clone the cosmos-installer. Open your terminal window, copy and run the following command.
 
+On Linux and macOS run:
 ```shell
 git clone https://github.com/hsfl/cosmos-installer.git ~/cosmos
+```
+
+on Windows
+```shell
+git clone https://github.com/hsfl/cosmos-installer.git c:/cosmos
 ```
 
 To build the docker go into the cosmos folder and run the build command (this step may take several minutes to complete):
