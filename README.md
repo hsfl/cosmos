@@ -25,7 +25,7 @@ git clone https://github.com/hsfl/cosmos-installer.git c:/cosmos
 To build the docker go into the cosmos folder and run the build command (this step may take several minutes to complete):
 
 ```bash
-cd ~/cosmos
+cd cosmos
 docker build -t cosmos .
 ```
 
