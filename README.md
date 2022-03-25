@@ -1,6 +1,6 @@
 # COSMOS: Comprehensive Open-architecture Solution for Mission Operations Systems
 
-COSMOS is a software framework for operating small satellites, including satellite swarms and constellations. It is a software ecosystem from the embedded flight software to ground station management software, to the mission operations center user interfaces. COSMOS is developed at the [Hawaii Space Flight Laboratory](https://www.hsfl.hawaii.edu/) and can be deployed in CubeSats, Rovers, Scientific Instruments and more.
+COSMOS is a software framework for operating distributed robotic systems, with a particular focus on space systems such as CubeSats, including satellite swarms and constellations. It is a software ecosystem with various applications from the embedded flight software to ground station management software, to the mission operations center user interfaces. COSMOS is developed at the [Hawaii Space Flight Laboratory](https://www.hsfl.hawaii.edu/) and can be deployed in CubeSats, Rovers, Scientific Instruments and more. Let's build the COSMOS for your next amazing application!
 
 <img src="https://user-images.githubusercontent.com/1541868/160047280-010609a7-596a-4eef-a3d7-5ccc59dbb247.PNG" width=100%>
 
@@ -8,7 +8,7 @@ COSMOS is a system that is designed to primarily support the development and ope
 
 ## Quick Installation Guide
 
-We recommend installing COSMOS via Docker:
+We recommend installing COSMOS via Docker. 
 
 * [Get Started with Docker](https://www.docker.com/get-started/)
 
