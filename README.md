@@ -35,7 +35,7 @@ docker build -t cosmos .
 Once the build has been completed, run the 'cosmos' container:
 
 ```
-docker run -it cosmos
+docker run -it --name cosmos cosmos
 ```
 
 Let's start agent_001 and agent_002 to test some cosmos features:
@@ -50,6 +50,13 @@ now open a new terminal window to start agent_002:
 docker run -it cosmos
 cd bin
 ./agent_002
+```
+
+Alternatively you can create the docker container 'cosmos' in detach mode and then easily run each agent from the terminal window:
+```
+docker run -t -d --name cosmos cosmos
+docker exec cosmos /root/cosmos/bin/agent_001
+docker exec cosmos /root/cosmos/bin/agent_002
 ```
 
 ## Open the Source Code
