@@ -67,4 +67,4 @@ docker exec cosmos /root/cosmos/bin/agent_002
 - Select 'Open Folder' /root/cosmos. Click 'OK'
 
 ## How do I continue from here?
-**Visit the COSMOS Website to get started:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
+**Visit the COSMOS documentation to learn more about COSMOS:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
