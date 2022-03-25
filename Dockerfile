@@ -22,6 +22,9 @@ RUN apt-get install openssh-server -y
 # Run COSMOS quick installer
 RUN git clone https://github.com/hsfl/cosmos.git ~/cosmos
 RUN chmod +x ~/cosmos/cosmos-install.sh
+RUN chmod +x ~/cosmos/scripts/cosmos-repos.sh
+RUN chmod +x ~/cosmos/scripts/cosmos-deploy.sh
+RUN chmod +x ~/cosmos/scripts/cosmos-build.sh
 
 WORKDIR /root/cosmos
 RUN /root/cosmos/cosmos-install.sh
