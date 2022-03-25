@@ -32,31 +32,30 @@ cd c:/cosmos
 docker build -t cosmos .
 ```
 
-Once the build has been completed, run the 'cosmos' container:
-
-```
-docker run -it --name cosmos cosmos
-```
-
-Let's start agent_001 and agent_002 to test some cosmos features:
-
-```
-cd bin
-./agent_001
-```
-
-now open a new terminal window to start agent_002:
-```
-docker run -it cosmos
-cd bin
-./agent_002
-```
-
-Alternatively you can create the docker container 'cosmos' in detach mode and then easily run each agent from the terminal window:
+Once the build has been completed we will run the 'cosmos' container. Let's create the docker container 'cosmos' in detach mode. 
 ```
 docker run -t -d --name cosmos cosmos
+```
+
+Let's run agent_001 from the terminal: 
+```
 docker exec cosmos /root/cosmos/bin/agent_001
+```
+and run agent_002 from another terminal window:
+```
 docker exec cosmos /root/cosmos/bin/agent_002
+```
+if you want to enter the 'cosmos' container in bash mode:
+```
+docker exec -it cosmos bash
+```
+
+Let's start agent_cpu and test some more features:
+
+```
+cd bin
+./agent_cpu &
+./agent list
 ```
 
 ## Open the COSMOS source code
