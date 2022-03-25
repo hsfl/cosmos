@@ -11,24 +11,24 @@ COSMOS is a system that is designed to primarily support the development and ope
 We recommend installing COSMOS via Docker. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
 
 * [Install Docker Desktop](https://www.docker.com/get-started/)
-* [Install Docker Compose](https://docs.docker.com/compose/install/) (Docker compose is automatically installed on Docker Desktop, you only need this for a Linux OS)
+* [Install Docker Compose](https://docs.docker.com/compose/install/) (Only needed for a Linux OS. Docker compose is automatically installed on Docker Desktop on Windows and macOS)
 
-Once you have docker we are going to clone the cosmos repository. Open your terminal window, copy and run the following command.
+Once you have Docker installed we are going to clone the cosmos repository. Open your terminal window, copy and run the following command.
 
-On Linux and macOS run:
+On Windows: clone cosmos to c:/cosmos (recommended path)
 ```shell
-git clone https://github.com/hsfl/cosmos-installer.git ~/cosmos
+git clone https://github.com/hsfl/cosmos.git c:/cosmos
 ```
 
-on Windows
+On Linux and macOS: clone cosmos to the home folder ~/cosmos (recommended path)
 ```shell
-git clone https://github.com/hsfl/cosmos-installer.git c:/cosmos
+git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
 
-To build the docker go into the cosmos folder and run the build command (this step may take several minutes to complete):
+To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
 
 ```bash
-cd cosmos
+cd c:/cosmos
 docker build -t cosmos .
 ```
 
