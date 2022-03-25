@@ -20,7 +20,7 @@ RUN apt-get install openssh-server -y
 #RUN apt-get install nodejs -y
 
 # Run COSMOS quick installer
-RUN git clone https://github.com/hsfl/cosmos-installer.git ~/cosmos
+RUN git clone https://github.com/hsfl/cosmos.git ~/cosmos
 RUN chmod +x ~/cosmos/cosmos-install.sh
 
 WORKDIR /root/cosmos
