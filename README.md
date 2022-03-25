@@ -6,13 +6,14 @@ COSMOS is a software framework for operating distributed robotic systems, with a
 
 COSMOS is a system that is designed to primarily support the development and operations of one or more small spacecraft and is particularly suited for organizations with limited development and operations budget, such as universities. COSMOS is currently in active development. COSMOS is designed to be seamlessly integrated and compatible with multiple different resources (nodal architecture) or nodes such as satellites, unmanned air systems (UASs), ground control stations, computer stations, etc. and it is being expanded to address simulation scenarios with complex nodal architectures where events can be detected and actions triggered. It has been developed in the new paradigm of the network-of-things where any asset can be connected to the system in a plug and play approach making it very generic for the inclusion and removal of assets. When an asset is connected and is COSMOS compatible, all the system can be informed of its presence and receive telemetry that can be processed to take actions. COSMOS is a suite of software (including external modules) that enables the operations team to interface with the spacecraft, ground control network, payload and other customers in order to perform the mission operations functions including mission planning and scheduling; contact operations; data management and analysis; simulations (including the operational testbed); ground network control; payload operations; flight dynamics; and system management. COSMOS is being designed to easily be adapted for new spacecraft or installation in new mission operations centers (MOCs).
 
-## Quick Installation Guide
+## Getting Started
 
-We recommend installing COSMOS via Docker. 
+We recommend installing COSMOS via Docker. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
 
-* [Get Started with Docker](https://www.docker.com/get-started/)
+* [Install Docker Desktop](https://www.docker.com/get-started/)
+* [Install Docker Compose](https://docs.docker.com/compose/install/) (Docker compose is automatically installed on Docker Desktop, you only need this for a Linux OS)
 
-Once you have docker let's clone the cosmos-installer. Open your terminal window, copy and run the following command.
+Once you have docker we are going to clone the cosmos repository. Open your terminal window, copy and run the following command.
 
 On Linux and macOS run:
 ```shell
