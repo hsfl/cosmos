@@ -64,7 +64,7 @@ docker exec cosmos /root/cosmos/bin/agent_002
 - Install extensions: 'Docker' and 'Remote Containers'
 - Click 'Open a Remote Window' on the bottom left corner of Visual Studio Code. 
 - Select 'Attach to Running Container'. Select the cosmos container
-- Open 'cosmos folder in container
+- Select 'Open Folder' /root/cosmos. Click 'OK'
 
 ## How do I continue from here?
 **Visit the COSMOS Website to get started:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
