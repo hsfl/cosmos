@@ -41,10 +41,10 @@ fi
 
 if [ "$verbose" = "no" ]; then
 	cmake $cosmosFolder/source/core &>cmake.log
-	make -j2 install &>install.log
+	make -j4 install &>install.log
 else
 	cmake $cosmosFolder/source/core >cmake.log
-	make -j2 install >install.log
+	make -j4 install >install.log
 fi
 
 echo "COSMOS Build done!"
