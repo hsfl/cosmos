@@ -11,6 +11,7 @@ RUN apt-get install git cmake -y
 RUN apt-get install build-essential -y 
 RUN apt-get install rsync zip -y 
 RUN apt-get install openssh-server -y 
+RUN apt-get install -y iputils-ping
 
 # g++ make gdb gdbserver 
 #curl build-essential wget libz-dev gcc-7 g++-7 cmake git openssl libssl-dev libsasl2-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev -y
