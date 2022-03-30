@@ -1,5 +1,12 @@
 # Cross Compile for Raspberry PI 0
-Raspberry PI cross compiler using the new GCC8 and GCC9 for Raspbian Buster.
+Raspberry PI cross compiler using the new GCC8 and GCC9 for Raspbian Buster 
+
+To see the currently available Raspbian oficial releases go to https://www.raspberrypi.com/software/operating-systems/. To see past releases go to [this wiki page](https://en.wikipedia.org/wiki/Raspberry_Pi_OS) 
+
+check to see what is your RPI0 version. Login to your pi via ssh
+```
+cat /etc/os-release
+```
 
 ## Install the RPI zero toolchain on Docker
 Make sure to install the Docker image as described here: https://github.com/hsfl/cosmos
