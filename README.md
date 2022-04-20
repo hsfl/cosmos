@@ -32,12 +32,12 @@ Windows:
 cd c:/cosmos
 ```
 
-MacOS:
+macOS:
 ```bash
 cd cosmos
 ```
 
-Then: 
+Then on Windows and macOS: 
 ```bash
 docker build -t cosmos .
 ```
