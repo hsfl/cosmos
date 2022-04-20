@@ -27,8 +27,17 @@ git clone https://github.com/hsfl/cosmos.git ~/cosmos
 
 To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
 
+Windows: 
 ```bash
 cd c:/cosmos
+
+MacOS:
+```bash
+cd cosmos
+```
+
+Then: 
+```bash
 docker build -t cosmos .
 ```
 
