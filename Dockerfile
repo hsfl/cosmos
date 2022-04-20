@@ -31,6 +31,9 @@ RUN chmod +x ~/cosmos/scripts/cosmos-build.sh
 WORKDIR /root/cosmos
 RUN /root/cosmos/cosmos-install.sh
 
+# RUN PERPETUALLY
+CMD tail -f /dev/null
+
 #WORKDIR /
 
 # Retrieve required repositories
