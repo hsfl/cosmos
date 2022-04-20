@@ -30,6 +30,7 @@ To build the cosmos image go into the newly created folder and run the Docker bu
 Windows: 
 ```bash
 cd c:/cosmos
+```
 
 MacOS:
 ```bash
