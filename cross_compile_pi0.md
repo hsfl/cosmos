@@ -26,7 +26,7 @@ tar xfz raspi-toolchain.tar.gz --strip-components=1 -C /opt
 ```
 
 ## Test the new toolchain with RPI Zero
-- open VS code and attach the 'cosmos' container 
+- open VS code and attach the 'cosmos' container, see instructions in the [readme](https://github.com/hsfl/cosmos).
 - open a cosmos project (example: [cosmos-core](https://github.com/hsfl/cosmos-core) or [cosmos-project-template](https://github.com/hsfl/cosmos-project-template))
 - Create a new file 'cmake-kits.json' inside the .vscode directory (see how to work with cmake kits in VSC [cosmos-core]( https://vector-of-bool.github.io/docs/vscode-cmake-tools/kits.html)) and add:
 ```
