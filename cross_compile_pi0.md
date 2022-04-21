@@ -11,14 +11,18 @@ cat /etc/os-release
 ## Install the RPI zero toolchain on Docker
 Make sure to install the Docker image as described here: https://github.com/hsfl/cosmos. 
 Start the Docker container and enter the terminal.
+
+TO DO: Update command for the new docker compose set up. 
 ```
 docker run -t -d --name cosmos cosmos
 ```
 Now let's install the toolchain. First download from the provided repository and then extract the files to the '/opt/' directory:
 ```
+mkdir cosmos/toolchain
+
 cd cosmos/toolchain
 wget https://github.com/Pro/raspi-toolchain/releases/latest/download/raspi-toolchain.tar.gz
-sudo tar xfz raspi-toolchain.tar.gz --strip-components=1 -C /opt
+tar xfz raspi-toolchain.tar.gz --strip-components=1 -C /opt
 ```
 
 ## Test the new toolchain with RPI Zero
