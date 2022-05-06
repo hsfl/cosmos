@@ -21,19 +21,19 @@ tar xfz raspi-toolchain.tar.gz --strip-components=1 -C /opt
 ```
 
 ## Test the new toolchain with RPI Zero
-- Open VS code and attach the 'cosmos' container, see instructions in the [readme](https://github.com/hsfl/cosmos).
-- Open a cosmos project (example: [cosmos-core](https://github.com/hsfl/cosmos-core) or [cosmos-project-template](https://github.com/hsfl/cosmos-project-template)) and download it to the source/projects folder. 
-- Next, go to the build folder and run do_cmake_rpi in the vscode terminal. 
+- open VS code and attach the 'cosmos' container, see instructions in the [readme](https://github.com/hsfl/cosmos).
+- open a cosmos project (example: [cosmos-core](https://github.com/hsfl/cosmos-core) or [cosmos-project-template](https://github.com/hsfl/cosmos-project-template)) and download it to the source/projects folder. 
+- next, go to the build folder and run do_cmake_rpi in the vscode terminal. 
 ```
 cd build
 ./do_cmake_rpi
 ```
-- Then build the project
+- then build the project
 ```
 cd rpi_ 
 make -j8
 ```
-- Sync with the RPI (change to your PI's address), you will have to transfer the file to your host machine first and then sync from there. 
+- sync with the RPI (change to your PI's address), you will have to transfer the file to your host machine first and then sync from there. 
 ```
 rsync -auv agent_template pi@ipaddres:~
 ```
