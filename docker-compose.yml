@@ -72,6 +72,7 @@ services:
       context: ./tools/cosmos-web/backend/
       dockerfile: Dockerfile
       target: base
+    platform: linux/x86_64
     container_name: cosmos_web_backend
     ports:
       - '10090:10090'
