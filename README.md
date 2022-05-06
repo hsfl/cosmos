@@ -13,17 +13,30 @@ We recommend installing COSMOS via Docker. By using Docker containers you will g
 * [Install Docker Desktop](https://www.docker.com/get-started/)
 * [Install Docker Compose](https://docs.docker.com/compose/install/) (Only needed for a Linux OS. Docker compose is automatically installed on Docker Desktop on Windows and macOS)
 
-Once you have Docker installed we are going to clone the cosmos repository. Open your terminal window, copy and run the following command.
+Once you have Docker installed we are going to clone the cosmos repository. Open your terminal window, copy and run the following commands.
+
+## Install Instructions (via Docker)
+
+**Windows Instructions:** 
+
+Open a command prompt window and enter the following two commands: 
 
 On Windows: clone cosmos to c:/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git c:/cosmos
 ```
 
-On Linux and macOS: clone cosmos to the home folder ~/cosmos (recommended path)
+this git clones clone cosmos core to c:/cosmos/docker/cosmos
+
+** Linux/macOS Instructions:** 
+
+Open a terminal window and enter the following two commands: 
+
+clone cosmos to the home folder ~/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
+this git clones clone cosmos core to ~/cosmos/docker/cosmos
 
 To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
 
