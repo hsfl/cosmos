@@ -25,8 +25,13 @@ On Windows: clone cosmos to c:/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git c:/cosmos
 ```
-
 this git clones clone cosmos core to c:/cosmos/docker/cosmos
+
+```shell
+git clone https://github.com/hsfl/cosmos-web.git c:/cosmos/tools/cosmos-web
+```
+this git clones clone cosmos web to c:/cosmos/docker/cosmos-web
+
 
 ** Linux/macOS Instructions:** 
 
@@ -38,7 +43,16 @@ git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
 this git clones clone cosmos core to ~/cosmos/docker/cosmos
 
-To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
+```shell
+git clone https://github.com/hsfl/cosmos-web.git ~/cosmos/tools/cosmos-web
+```
+this git clones clone cosmos web to ~/cosmos/docker/cosmos-web
+
+
+**AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
+
+
+1. Open terminal in your newly created cosmos folder. To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
 
 Windows: 
 ```bash
@@ -49,6 +63,19 @@ macOS:
 ```bash
 cd cosmos
 ```
+
+2. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
+```
+docker-compose build
+```
+
+3. Finally, run this command to create the containers in Docker. 
+```
+docker-compose up -d
+```
+
+
+---
 
 Then on Windows and macOS: 
 ```bash
