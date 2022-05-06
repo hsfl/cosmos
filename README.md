@@ -97,6 +97,39 @@ cd bin
 ./agent list
 ```
 
+## Running COSMOS Web (via Docker)
+
+View grafana in the browser using this url
+http://localhost:3000/
+
+type user and pass (admin: admin), skip new pass (or change it if you want it)
+
+(old instructions: Follow the instructions on the [COSMOS Web Installation page](https://hsfl.github.io/cosmos-docs/pages/2-getting_started/install/cosmos-web.html))
+
+
+## Demo 
+
+Start COSMOS Docker
+
+Run agent_cpu
+```
+./comos/bin/agent_cpu 
+```
+
+
+Run propagator_simple. Propagate position and attitude in the satellite orbit for a specific node/satellite
+```
+./comos/bin/propagator_simple
+```
+
+Run agent_web? (WIP): State of Health collector agent.
+```
+./comos/bin/agent_web
+```
+
+Open Grafana to see the agent_cpu and propagator data by opening the standard widget.
+
+
 ## Open the COSMOS source code
 - Start Visual Studio Code. [Download VSC from this link](https://code.visualstudio.com/)
 - Install extensions: 'Docker' and 'Remote Containers'
