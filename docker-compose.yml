@@ -60,7 +60,7 @@ services:
 
   cosmos:
     build:
-      context: ~/cosmos/docker/cosmos/
+      context: .
       dockerfile: Dockerfile
     container_name: cosmos
     restart: always
@@ -69,7 +69,7 @@ services:
   
   cosmos_web_backend:
     build:
-      context: ./backend/
+      context: ./tools/cosmos-web/backend/
       dockerfile: Dockerfile
       target: base
     container_name: cosmos_web_backend
