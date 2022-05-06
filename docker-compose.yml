@@ -31,9 +31,9 @@ services:
     ports:
       - '10095:10095/udp'
     volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    - ./soh_parser.star:/soh_parser.star:ro
-    - ./beacon_parser.star:/beacon_parser.star:ro
+    - ./tools/cosmos-web/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - ./tools/cosmos-web/soh_parser.star:/soh_parser.star:ro
+    - ./tools/cosmos-web/beacon_parser.star:/beacon_parser.star:ro
     depends_on:
       - influxdb
     links:
@@ -56,7 +56,7 @@ services:
       #- '8086:8086'
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana-plugins:/var/lib/grafana/plugins
+      - ./tools/cosmos-web/grafana-plugins:/var/lib/grafana/plugins
 
   cosmos:
     build:
@@ -76,9 +76,9 @@ services:
     ports:
       - '10090:10090'
     volumes:
-      - ./grafana-plugins:/grafana-plugins
-      - ./backend/src:/home/node/app/src
-      - ./backend/nodemon.json:/home/node/app/nodemon.json
+      - ./tools/cosmos-web/grafana-plugins:/grafana-plugins
+      - ./tools/cosmos-web/backend/src:/home/node/app/src
+      - ./tools/cosmos-web/backend/nodemon.json:/home/node/app/nodemon.json
     command: npm run dev
 
       
