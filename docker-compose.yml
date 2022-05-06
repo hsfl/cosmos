@@ -1,0 +1,90 @@
+version: '3.6'
+services:
+  influxdb:
+    image: influxdb:2.1.1
+    container_name: influxdb
+    restart: always
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=hsfladmin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=hsfladmin
+      - DOCKER_INFLUXDB_INIT_ORG=hsfl
+      - DOCKER_INFLUXDB_INIT_BUCKET=SOH_Bucket
+      #- DOCKER_INFLUXDB_INIT_RETENTION=
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=INFLUXDBINITADMINTOKEN
+    ports:
+      - '8086:8086'
+    volumes:
+      # Mount for influxdb data directory and configuration
+      - influxdb2:/.influxdb2
+
+  telegraf:
+    image: telegraf
+    container_name: telegraf
+    restart: always
+    environment:
+      - DOCKER_INFLUXDB_INIT_ORG=hsfl
+      - DOCKER_INFLUXDB_INIT_BUCKET=SOH_Bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=INFLUXDBINITADMINTOKEN
+      - AGENT_BEACON_PORT=10095
+      - AGENT_SOH_PORT=10096
+    ports:
+      - '10095:10095/udp'
+    volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - ./soh_parser.star:/soh_parser.star:ro
+    - ./beacon_parser.star:/beacon_parser.star:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana-server
+    restart: always
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DEFAULT_APP_MODE=development
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'
+      #- '8086:8086'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana-plugins:/var/lib/grafana/plugins
+
+  cosmos:
+    build:
+      context: ~/cosmos/docker/cosmos/
+      dockerfile: Dockerfile
+    container_name: cosmos
+    restart: always
+    volumes:
+      - cosmos_bin:/home/cosmos/bin
+  
+  cosmos_web_backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+      target: base
+    container_name: cosmos_web_backend
+    ports:
+      - '10090:10090'
+    volumes:
+      - ./grafana-plugins:/grafana-plugins
+      - ./backend/src:/home/node/app/src
+      - ./backend/nodemon.json:/home/node/app/nodemon.json
+    command: npm run dev
+
+      
+volumes:
+  cosmos_bin: {}
+  grafana_data: {}
+  influxdb2: {}
+
+
