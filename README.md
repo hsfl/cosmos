@@ -74,18 +74,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-
----
-
-Then on Windows and macOS: 
-```bash
-docker build -t cosmos .
-```
-
-Once the build has been completed we will run the 'cosmos' container. Let's create the docker container 'cosmos' in detach mode. 
-```
-docker run -t -d --name cosmos cosmos
-```
+4. Now that cosmos and cosmos-web have been installed
 
 Let's run agent_001 from the terminal: 
 ```
@@ -117,3 +106,15 @@ cd bin
 
 ## How do I continue from here?
 **Visit the COSMOS documentation to learn more about COSMOS:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
+
+# Notes
+
+Build cosmos docker separately
+```bash
+docker build -t cosmos .
+```
+
+Once the build has been completed we will run the 'cosmos' container. Let's create the docker container 'cosmos' in detach mode. 
+```
+docker run -t -d --name cosmos cosmos
+```
