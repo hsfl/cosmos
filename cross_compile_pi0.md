@@ -22,7 +22,7 @@ tar xfz raspi-toolchain.tar.gz --strip-components=1 -C /opt
 
 ## Test the new toolchain with RPI Zero
 - open VS code and attach the 'cosmos' container, see instructions in the [readme](https://github.com/hsfl/cosmos).
-- open a cosmos project (example: [cosmos-core](https://github.com/hsfl/cosmos-core) or [cosmos-project-template](https://github.com/hsfl/cosmos-project-template)) and download it to the source/projects folder. 
+- clone the [cosmos-project-template](https://github.com/hsfl/cosmos-project-template)) to your source/projects folder in the cosmos image. 
 - next, go to the build folder and run do_cmake_rpi in the vscode terminal. 
 ```
 cd build
