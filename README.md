@@ -25,12 +25,12 @@ On Windows: clone cosmos to c:/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git c:/cosmos
 ```
-this git clones clone cosmos core to c:/cosmos/docker/cosmos
+this git clones cosmos core to c:/cosmos/docker/cosmos
 
 ```shell
 git clone https://github.com/hsfl/cosmos-web.git c:/cosmos/tools/cosmos-web
 ```
-this git clones clone cosmos web to c:/cosmos/docker/cosmos-web
+this git clones cosmos web to c:/cosmos/docker/cosmos-web
 
 
 **Linux/macOS Instructions:** 
@@ -46,7 +46,7 @@ this git clones clone cosmos core to ~/cosmos/docker/cosmos
 ```shell
 git clone https://github.com/hsfl/cosmos-web.git ~/cosmos/tools/cosmos-web
 ```
-this git clones clone cosmos web to ~/cosmos/docker/cosmos-web
+this git clones cosmos web to ~/cosmos/docker/cosmos-web
 
 
 **AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
