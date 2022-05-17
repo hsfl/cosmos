@@ -33,7 +33,7 @@ git clone https://github.com/hsfl/cosmos-web.git c:/cosmos/tools/cosmos-web
 this git clones clone cosmos web to c:/cosmos/docker/cosmos-web
 
 
-** Linux/macOS Instructions:** 
+**Linux/macOS Instructions:** 
 
 Open a terminal window and enter the following two commands: 
 
