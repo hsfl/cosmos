@@ -41,7 +41,7 @@ clone cosmos to the home folder ~/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
-this git clones clone cosmos core to ~/cosmos/docker/cosmos
+this git clones cosmos core to ~/cosmos/docker/cosmos
 
 ```shell
 git clone https://github.com/hsfl/cosmos-web.git ~/cosmos/tools/cosmos-web
