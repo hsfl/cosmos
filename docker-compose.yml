@@ -28,12 +28,15 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=INFLUXDBINITADMINTOKEN
       - AGENT_BEACON_PORT=10095
       - AGENT_SOH_PORT=10096
+      - SIMDATA_PORT=10097
     ports:
       - '10095:10095/udp'
+      #- '10097:10097/udp'
     volumes:
     - ./tools/cosmos-web/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - ./tools/cosmos-web/soh_parser.star:/soh_parser.star:ro
     - ./tools/cosmos-web/beacon_parser.star:/beacon_parser.star:ro
+    - ./tools/cosmos-web/simdata_parser.star:/simdata_parser.star:ro
     depends_on:
       - influxdb
     links:
