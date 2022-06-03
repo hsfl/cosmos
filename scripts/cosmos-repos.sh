@@ -137,7 +137,7 @@ else
 		echo "Cloning COSMOS/resources from https://github.com/hsfl/cosmos-resources.git"
 		#echo "Cloning with depth 1 and branch master only"
 		#git clone --depth 1 --branch master https://bitbucket.org/cosmos/resources.git resources
-		git clone https://github.com/hsfl/cosmos-resources.git
+		git clone https://github.com/hsfl/cosmos-resources.git resources
 
     fi
 fi
