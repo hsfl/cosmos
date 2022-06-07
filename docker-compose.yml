@@ -68,7 +68,7 @@ services:
     container_name: cosmos
     restart: always
     volumes:
-      - cosmos_bin:/home/cosmos/bin
+      - bin:/home/cosmos/bin
   
   web_backend:
     build:
@@ -87,8 +87,6 @@ services:
 
 
 volumes:
-  cosmos_bin: {}
+  bin: {}
   grafana_data: {}
   influxdb2: {}
-
-
