@@ -61,7 +61,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ./tools/cosmos-web/grafana-plugins:/var/lib/grafana/plugins
 
-  cosmos:
+  core:
     build:
       context: .
       dockerfile: Dockerfile
@@ -70,7 +70,7 @@ services:
     volumes:
       - cosmos_bin:/home/cosmos/bin
   
-  cosmos_web_backend:
+  web_backend:
     build:
       context: ./tools/cosmos-web/backend/
       dockerfile: Dockerfile
@@ -85,7 +85,7 @@ services:
       - ./tools/cosmos-web/backend/nodemon.json:/home/node/app/nodemon.json
     command: npm run dev
 
-      
+
 volumes:
   cosmos_bin: {}
   grafana_data: {}
