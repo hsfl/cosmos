@@ -77,6 +77,7 @@ cp .env.example .env
 ```
 
 Then change the variables inside the .env file to configure your setup.
+If the next step fails with ```ERROR: Missing mandatory value for "environment" option``` be sure that the .env file was copied and created and filled out.
 
 3. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
 ```
