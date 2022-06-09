@@ -64,17 +64,31 @@ macOS:
 cd cosmos
 ```
 
-2. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
+2. Copy the .env.example file and rename to .env
+
+Windows:
+```bash
+copy .env.example .env
+```
+
+macOS/Linux:
+```bash
+cp .env.example .env
+```
+
+Then change the variables inside the .env file to configure your setup.
+
+3. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
 ```
 docker-compose build
 ```
 
-3. Finally, run this command to create the containers in Docker. 
+4. Finally, run this command to create the containers in Docker. 
 ```
 docker-compose up -d
 ```
 
-4. Now that cosmos and cosmos-web have been installed
+5. Now that cosmos and cosmos-web have been installed
 
 Let's run agent_001 from the terminal: 
 ```
