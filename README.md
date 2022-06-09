@@ -64,7 +64,7 @@ macOS:
 cd cosmos
 ```
 
-2. Copy the .env.example file and rename to .env
+2. Copy the .env.example file and name it .env
 
 Windows:
 ```bash
