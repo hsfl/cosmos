@@ -6,12 +6,12 @@ services:
     restart: always
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=username
-      - DOCKER_INFLUXDB_INIT_PASSWORD=password
-      - DOCKER_INFLUXDB_INIT_ORG=hsfl
-      - DOCKER_INFLUXDB_INIT_BUCKET=SOH_Bucket
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_INIT_ADMIN_USERNAME:?err}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_INIT_ADMIN_PASSWORD:?err}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
       #- DOCKER_INFLUXDB_INIT_RETENTION=
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=INFLUXDBINITADMINTOKEN
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
     ports:
       - '8086:8086'
     volumes:
@@ -23,9 +23,9 @@ services:
     container_name: telegraf
     restart: always
     environment:
-      - DOCKER_INFLUXDB_INIT_ORG=hsfl
-      - DOCKER_INFLUXDB_INIT_BUCKET=SOH_Bucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=INFLUXDBINITADMINTOKEN
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
       - AGENT_BEACON_PORT=10095
       - AGENT_SOH_PORT=10096
       - SIMDATA_PORT=10097
@@ -49,9 +49,9 @@ services:
     depends_on:
       - influxdb
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_DEFAULT_APP_MODE=development
+      - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER:?err}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD:?err}
+      - GF_DEFAULT_APP_MODE=${GF_APP_MODE:?err}
     links:
       - influxdb
     ports:
@@ -77,6 +77,7 @@ services:
       target: base
     #platform: linux/x86_64 # tentative used for macOS M1 to compile graphana plugins
     container_name: cosmos_web_backend
+    restart: always
     ports:
       - '10090:10090'
     volumes:
