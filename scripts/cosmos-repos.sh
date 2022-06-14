@@ -53,7 +53,7 @@ else
 		echo "Cloning COSMOS/core from https://github.com/hsfl/cosmos-core.git"
 		#echo "Cloning with depth 1 and branch master only"
 		#git clone --depth 1 --branch master https://bitbucket.org/cosmos/core.git source/core
-		git clone https://github.com/hsfl/cosmos-core.git source/core
+		git clone https://github.com/hsfl/cosmos-core.git $cosmosFolder/source/core
     fi
 fi
 
