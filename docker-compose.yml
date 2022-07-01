@@ -74,7 +74,8 @@ services:
       - cwbackend
     restart: always
     volumes:
-      - bin:/home/cosmos/bin
+      - bin:/root/cosmos/bin
+      - resources:/root/cosmos/resources
   
   web_backend:
     build:
@@ -93,11 +94,13 @@ services:
       - ./tools/cosmos-web/grafana-plugins:/grafana-plugins
       - ./tools/cosmos-web/backend/src:/home/node/app/src
       - ./tools/cosmos-web/backend/nodemon.json:/home/node/app/nodemon.json
-      - bin:/home/cosmos/bin
+      - bin:/root/cosmos/bin
+      - resources:/root/cosmos/resources
 
 
 volumes:
   bin: {}
+  resources: {}
   grafana_data: {}
   influxdb2: {}
 
