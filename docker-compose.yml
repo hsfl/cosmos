@@ -3,7 +3,6 @@ services:
   influxdb:
     image: influxdb:2.1.1
     container_name: influxdb
-    restart: always
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_INIT_ADMIN_USERNAME:?err}
@@ -12,8 +11,11 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
       #- DOCKER_INFLUXDB_INIT_RETENTION=
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
+    networks:
+      - cwbackend
     ports:
       - '8086:8086'
+    restart: always
     volumes:
       # Mount for influxdb data directory and configuration
       - influxdb2:/.influxdb2
@@ -21,7 +23,6 @@ services:
   telegraf:
     image: telegraf
     container_name: telegraf
-    restart: always
     environment:
       - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
       - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
@@ -29,9 +30,15 @@ services:
       - AGENT_BEACON_PORT=10095
       - AGENT_SOH_PORT=10096
       - SIMDATA_PORT=10097
+    networks:
+      - cwbackend
     ports:
-      - '10095:10095/udp'
-      #- '10097:10097/udp'
+      - '10095:10095/udp' # accessible to agent_ground and other external programs
+      # ports in use by telegraf but don't need to be exposed:
+      # port 10096/udp is in use
+      # - '10097:10097/udp' # port 10097/udp is in use
+      # port 10097/tcp is in use
+    restart: always
     volumes:
     - ./tools/cosmos-web/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - ./tools/cosmos-web/soh_parser.star:/soh_parser.star:ro
@@ -39,24 +46,21 @@ services:
     - ./tools/cosmos-web/simdata_parser.star:/simdata_parser.star:ro
     depends_on:
       - influxdb
-    links:
-      - influxdb
 
   grafana:
     image: grafana/grafana
     container_name: grafana-server
-    restart: always
     depends_on:
       - influxdb
     environment:
       - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER:?err}
       - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD:?err}
       - GF_DEFAULT_APP_MODE=${GF_APP_MODE:?err}
-    links:
-      - influxdb
+    networks:
+      - cwbackend
     ports:
       - '3000:3000'
-      #- '8086:8086'
+    restart: always
     volumes:
       - grafana_data:/var/lib/grafana
       - ./tools/cosmos-web/grafana-plugins:/var/lib/grafana/plugins
@@ -66,6 +70,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: cosmos
+    networks:
+      - cwbackend
     restart: always
     volumes:
       - bin:/home/cosmos/bin
@@ -75,19 +81,26 @@ services:
       context: ./tools/cosmos-web/backend/
       dockerfile: Dockerfile
       target: base
-    #platform: linux/x86_64 # tentative used for macOS M1 to compile graphana plugins
+    command: npm run dev
+    #platform: linux/x86_64 # tentatively used for macOS M1 to compile grafana plugins
     container_name: cosmos_web_backend
-    restart: always
+    networks:
+      - cwbackend
     ports:
       - '10090:10090'
+    restart: always
     volumes:
       - ./tools/cosmos-web/grafana-plugins:/grafana-plugins
       - ./tools/cosmos-web/backend/src:/home/node/app/src
       - ./tools/cosmos-web/backend/nodemon.json:/home/node/app/nodemon.json
-    command: npm run dev
+      - bin:/home/cosmos/bin
 
 
 volumes:
   bin: {}
   grafana_data: {}
   influxdb2: {}
+
+networks:
+  cwbackend:
+    driver: bridge
