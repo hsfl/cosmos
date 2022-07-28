@@ -40,10 +40,14 @@ else
 fi
 
 if [ "$verbose" = "no" ]; then
-	cmake $cosmosFolder/source/core &>cmake.log
+	cd $cosmosFolder/source/core/build
+    ./do_cmake_linux &>cmake.log
+    cd linux
 	make -j4 install &>install.log
 else
-	cmake $cosmosFolder/source/core >cmake.log
+    cd $cosmosFolder/source/core/build
+    ./do_cmake_linux >cmake.log
+    cd linux
 	make -j4 install >install.log
 fi
 

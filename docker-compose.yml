@@ -72,7 +72,7 @@ services:
     container_name: cosmos
     networks:
       - cwbackend
-    restart: always
+    restart: on-failure
     volumes:
       - bin:/root/cosmos/bin
       - resources:/root/cosmos/resources
