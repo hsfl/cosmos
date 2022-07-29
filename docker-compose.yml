@@ -2,14 +2,14 @@ version: '3.6'
 services:
   influxdb:
     image: influxdb:2.1.1
-    container_name: influxdb
+    container_name: cosmos_influxdb
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_INIT_ADMIN_USERNAME:?err}
       - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_INIT_ADMIN_PASSWORD:?err}
       - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
-      #- DOCKER_INFLUXDB_INIT_RETENTION=
+      - DOCKER_INFLUXDB_INIT_BUCKET=Simulator_Data
+      - DOCKER_INFLUXDB_INIT_RETENTION=48h
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
     networks:
       - cwbackend
@@ -22,10 +22,10 @@ services:
 
   telegraf:
     image: telegraf
-    container_name: telegraf
+    container_name: cosmos_telegraf
     environment:
       - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:?err}
+      - DOCKER_INFLUXDB_INIT_BUCKET=Simulator_Data
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
       - AGENT_BEACON_PORT=10095
       - AGENT_SOH_PORT=10096
@@ -49,7 +49,7 @@ services:
 
   grafana:
     image: grafana/grafana
-    container_name: grafana-server
+    container_name: cosmos_grafana
     depends_on:
       - influxdb
     environment:
@@ -69,7 +69,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: cosmos
+    container_name: cosmos_core
     networks:
       - cwbackend
     restart: on-failure
