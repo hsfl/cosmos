@@ -25,12 +25,11 @@ On Windows: clone cosmos to c:/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git c:/cosmos
 ```
-this git clones cosmos core to c:/cosmos/docker/cosmos
+Also clone cosmos-web
 
 ```shell
 git clone https://github.com/hsfl/cosmos-web.git c:/cosmos/tools/cosmos-web
 ```
-this git clones cosmos web to c:/cosmos/docker/cosmos-web
 
 
 **Linux/macOS Instructions:** 
@@ -41,12 +40,11 @@ clone cosmos to the home folder ~/cosmos (recommended path)
 ```shell
 git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
-this git clones cosmos core to ~/cosmos/docker/cosmos
+Also clone cosmos-web
 
 ```shell
 git clone https://github.com/hsfl/cosmos-web.git ~/cosmos/tools/cosmos-web
 ```
-this git clones cosmos web to ~/cosmos/docker/cosmos-web
 
 
 **AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
@@ -81,13 +79,10 @@ If the next step fails with ```ERROR: Missing mandatory value for "environment" 
 
 3. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
 ```
-docker-compose build
-```
-
-4. Finally, run this command to create the containers in Docker. 
-```
 docker-compose up -d
 ```
+4. Follow the instruction on the [COSMOS Web repository page](https://github.com/hsfl/cosmos-web/blob/master/README.md) to install the Grafana-plugins for COSMOS Web
+
 
 5. Now that cosmos and cosmos-web have been installed
 
