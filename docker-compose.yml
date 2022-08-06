@@ -34,6 +34,7 @@ services:
       - cwbackend
     ports:
       - '10095:10095/udp' # accessible to agent_ground and other external programs
+      - '10096:10096/udp'
       # ports in use by telegraf but don't need to be exposed:
       # port 10096/udp is in use
       # - '10097:10097/udp' # port 10097/udp is in use
