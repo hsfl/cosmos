@@ -26,25 +26,25 @@ echo "Setup as " $usertype ", OS: " $OSTYPE
 # sudo apt-get install build-essential cmake git -y # -y tells apt-get not to prompt and just get on with installing
 
 
-if [[ "$downloadRepositories" = "yes" ]]; then
+if [[ "$downloadRepositories" == "yes" ]]; then
 	./scripts/cosmos-repos.sh $cosmosFolder $usertype #$bitbucketUserName 
 fi
 
 # build and install COSMOS locally
-if [[ "$cosmosBuild" = "yes" ]]; then
+if [[ "$cosmosBuild" == "yes" ]]; then
 	./scripts/cosmos-deploy.sh $cosmosFolder
 	./scripts/cosmos-build.sh $cosmosFolder $verbose
 fi
 
 # build docker
-if [[ "$dockerBuild" = "yes" ]]; then
+if [[ "$dockerBuild" == "yes" ]]; then
 	echo "------------------"
 	echo "COSMOS Docker Build >>>> "
 	sudo docker build -t cosmos .
 fi
 
 # run docker
-if [[ "$dockerRun" = "yes" ]]; then
+if [[ "$dockerRun" == "yes" ]]; then
 	echo "------------------"
 	echo "COSMOS Docker Deploy >>>> "
 	#sudo docker run -it cosmos /bin/bash -c 'cd /root/cosmos; '
