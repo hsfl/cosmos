@@ -45,7 +45,7 @@ fi
 #echo "export PATH=$cosmosFolder/bin:$PATH"
 echo "$PATH"|grep -q cosmos/bin && cosmosInThePath='yes' #&& echo "found cosmos on the PATH"
 
-if [ "$cosmosInThePath" = "yes" ]
+if [ "$cosmosInThePath" == "yes" ]
 	then
 	echo "COSMOS/bin folder was found on the PATH"
 else
