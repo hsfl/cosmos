@@ -39,7 +39,7 @@ else
 	fi
 fi
 
-if [ "$verbose" = "no" ]; then
+if [ "$verbose" == "no" ]; then
 	cd $cosmosFolder/source/core/build
     ./do_cmake_linux &>cmake.log
     cd linux
