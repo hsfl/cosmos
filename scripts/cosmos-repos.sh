@@ -21,12 +21,12 @@ else
     echo "------------------"
 
     # use ssh
-    if [[ "$usertype" = "developer" ]]
+    if [[ "$usertype" == "developer" ]]
     then
     	# developer must have ssh keys enabled
 		echo "Cloning COSMOS/core from git@github.com:hsfl/cosmos-core.git"
 		git clone git@github.com:hsfl/cosmos-core.git
-    elif [[ "$usertype" = "embedded" ]]
+    elif [[ "$usertype" == "embedded" ]]
     then
 		echo "Downloading COSMOS/core from https://github.com/hsfl/cosmos-core/zipball/master/"
 		# download the latest master as a zip file
@@ -65,11 +65,11 @@ else
     echo "------------------"
 
     # use ssh
-    if [[ "$usertype" = "developer" ]]
+    if [[ "$usertype" == "developer" ]]
     then
 		echo "Cloning COSMOS/nodes/cubesat1 from git@github.com:hsfl/cosmos-node-cubesat1.git"
 		git clone git@github.com:hsfl/cosmos-node-cubesat1.git nodes/cubesat1
-    elif [[ "$usertype" = "embedded" ]]
+    elif [[ "$usertype" == "embedded" ]]
     then
 		echo "Downloading COSMOS/nodes/cubesat1 from https://github.com/hsfl/cosmos-node-cubesat1/zipball/master/"
 		# download the latest master as a zip file
@@ -107,11 +107,11 @@ else
     echo "------------------"
 
     # use ssh
-    if [[ "$usertype" = "developer" ]]
+    if [[ "$usertype" == "developer" ]]
     then
 		echo "Cloning COSMOS/resources from git@github.com:hsfl/cosmos-resources.git"
 		git clone git@github.com:hsfl/cosmos-resources.git resources
-    elif [[ "$usertype" = "embedded" ]]
+    elif [[ "$usertype" == "embedded" ]]
     then
 		# download zip to save space
 		echo "Downloading COSMOS/resources from https://github.com/hsfl/cosmos-resources/zipball/master/"
@@ -151,11 +151,11 @@ else
     echo "------------------"
 
     # use ssh
-    if [[ "$usertype" = "developer" ]]
+    if [[ "$usertype" == "developer" ]]
     then
 		echo "Cloning COSMOS/source/projects/template from git@bitbucket.org:cosmos-project/project-template.git"
 		git clone git@bitbucket.org:cosmos-project/project-template.git source/projects/template
-    elif [[ "$usertype" = "embedded" ]]
+    elif [[ "$usertype" == "embedded" ]]
     then
 		# download zip to save space
 		echo "Downloading COSMOS/source/projects/template from https://bitbucket.org/cosmos-project/project-template/get/master.zip"
