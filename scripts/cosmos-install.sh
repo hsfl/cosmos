@@ -12,7 +12,7 @@ verbose='no' # 'yes' will print everything
 cosmosFolder=~/cosmos
 
 downloadRepositories='yes'
-cosmosBuild='yes'
+cosmosBuild='no'
 dockerBuild='no'
 dockerRun='no'
 
@@ -27,13 +27,13 @@ echo "Setup as " $usertype ", OS: " $OSTYPE
 
 
 if [[ "$downloadRepositories" == "yes" ]]; then
-	./scripts/cosmos-repos.sh $cosmosFolder $usertype #$bitbucketUserName 
+	./cosmos-repos.sh $cosmosFolder $usertype #$bitbucketUserName 
 fi
 
 # build and install COSMOS locally
 if [[ "$cosmosBuild" == "yes" ]]; then
-	./scripts/cosmos-deploy.sh $cosmosFolder
-	./scripts/cosmos-build.sh $cosmosFolder $verbose
+	./cosmos-deploy.sh $cosmosFolder
+	./cosmos-build.sh $cosmosFolder $verbose
 fi
 
 # build docker
