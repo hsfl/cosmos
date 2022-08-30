@@ -18,7 +18,7 @@ services:
     restart: always
     volumes:
       # Mount for influxdb data directory and configuration
-      - influxdb2:/.influxdb2
+      - influxdb2:/var/lib/influxdb
 
   telegraf:
     image: telegraf
