@@ -30,13 +30,14 @@ services:
       - AGENT_BEACON_PORT=10095
       - AGENT_SOH_PORT=10096
       - SIMDATA_PORT=10097
+      - LOG_PORT=10098
     networks:
       - cwbackend
     ports:
       - '10095:10095/udp' # accessible to agent_ground and other external programs
       - '10096:10096/udp'
+      - '10098:10098/udp'
       # ports in use by telegraf but don't need to be exposed:
-      # port 10096/udp is in use
       # - '10097:10097/udp' # port 10097/udp is in use
       # port 10097/tcp is in use
     restart: always
@@ -45,6 +46,7 @@ services:
     - ./tools/cosmos-web/soh_parser.star:/soh_parser.star:ro
     - ./tools/cosmos-web/beacon_parser.star:/beacon_parser.star:ro
     - ./tools/cosmos-web/simdata_parser.star:/simdata_parser.star:ro
+    - ./tools/cosmos-web/log_parser.star:/log_parser.star:ro
     depends_on:
       - influxdb
 
@@ -65,6 +67,18 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./tools/cosmos-web/grafana-plugins:/var/lib/grafana/plugins
+  
+  loki:
+    image: grafana/loki
+    container_name: cosmos_log
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - cwbackend
+    ports:
+      - '3100:3100'
+    restart: always
+    volumes:
+      - logs:/loki
 
   core:
     build:
@@ -101,6 +115,7 @@ services:
 
 volumes:
   bin: {}
+  logs: {}
   resources: {}
   grafana_data: {}
   influxdb2: {}
