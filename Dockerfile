@@ -28,6 +28,11 @@ RUN chmod +x ~/cosmos/cosmos-install.sh
 RUN chmod +x ~/cosmos/scripts/cosmos-repos.sh
 RUN chmod +x ~/cosmos/scripts/cosmos-deploy.sh
 RUN chmod +x ~/cosmos/scripts/cosmos-build.sh
+# Fix to CFLF line ending for windows
+RUN sed -i 's/\r$//' /root/cosmos/cosmos-install.sh
+RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-repos.sh
+RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-deploy.sh
+RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-build.sh
 
 WORKDIR /root/cosmos
 RUN /root/cosmos/cosmos-install.sh
