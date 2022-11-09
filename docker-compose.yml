@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: cosmos_core
+    image: cosmos/core
     networks:
       - cwnetwork
     restart: unless-stopped
