@@ -5,7 +5,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: cosmos_core
-    image: cosmos/core
+    image: hsfl2/core
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 10m
     networks:
       - cwnetwork
     restart: unless-stopped
