@@ -1,125 +1,26 @@
 version: '3.6'
 services:
-  influxdb:
-    image: influxdb:2.1.1
-    container_name: cosmos_influxdb
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_INIT_ADMIN_USERNAME:?err}
-      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_INIT_ADMIN_PASSWORD:?err}
-      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
-      - DOCKER_INFLUXDB_INIT_BUCKET=Simulator_Data
-      - DOCKER_INFLUXDB_INIT_RETENTION=48h
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
-    networks:
-      - cwbackend
-    ports:
-      - '8086:8086'
-    restart: always
-    volumes:
-      # Mount for influxdb data directory and configuration
-      - influxdb2:/var/lib/influxdb2
-
-  telegraf:
-    image: telegraf
-    container_name: cosmos_telegraf
-    environment:
-      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:?err}
-      - DOCKER_INFLUXDB_INIT_BUCKET=Simulator_Data
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:?err}
-      - AGENT_BEACON_PORT=10095
-      - AGENT_SOH_PORT=10096
-      - SIMDATA_PORT=10097
-      - LOG_PORT=10098
-    networks:
-      - cwbackend
-    ports:
-      - '10095:10095/udp' # accessible to agent_ground and other external programs
-      - '10096:10096/udp'
-      - '10098:10098/udp'
-      # ports in use by telegraf but don't need to be exposed:
-      # - '10097:10097/udp' # port 10097/udp is in use
-      # port 10097/tcp is in use
-    restart: always
-    volumes:
-    - ./tools/cosmos-web/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    - ./tools/cosmos-web/soh_parser.star:/soh_parser.star:ro
-    - ./tools/cosmos-web/beacon_parser.star:/beacon_parser.star:ro
-    - ./tools/cosmos-web/simdata_parser.star:/simdata_parser.star:ro
-    - ./tools/cosmos-web/log_parser.star:/log_parser.star:ro
-    depends_on:
-      - influxdb
-
-  grafana:
-    image: grafana/grafana
-    container_name: cosmos_grafana
-    depends_on:
-      - influxdb
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER:?err}
-      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD:?err}
-      - GF_DEFAULT_APP_MODE=${GF_APP_MODE:?err}
-    networks:
-      - cwbackend
-    ports:
-      - '3000:3000'
-    restart: always
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./tools/cosmos-web/grafana-plugins:/var/lib/grafana/plugins
-  
-  loki:
-    image: grafana/loki
-    container_name: cosmos_log
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - cwbackend
-    ports:
-      - '3100:3100'
-    restart: always
-    volumes:
-      - logs:/loki
-
   core:
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: cosmos_core
+    image: hsfl2/core
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 10m
     networks:
-      - cwbackend
-    restart: on-failure
+      - cwnetwork
+    restart: unless-stopped
     volumes:
       - bin:/root/cosmos/bin
       - resources:/root/cosmos/resources
-  
-  web_backend:
-    build:
-      context: ./tools/cosmos-web/backend/
-      dockerfile: Dockerfile
-      target: base
-    command: npm run dev
-    #platform: linux/x86_64 # tentatively used for macOS M1 to compile grafana plugins
-    container_name: cosmos_web_backend
-    networks:
-      - cwbackend
-    ports:
-      - '10090:10090'
-    restart: always
-    volumes:
-      - ./tools/cosmos-web/grafana-plugins:/grafana-plugins
-      - ./tools/cosmos-web/backend/src:/home/node/app/src
-      - ./tools/cosmos-web/backend/nodemon.json:/home/node/app/nodemon.json
-      - bin:/root/cosmos/bin
-      - resources:/root/cosmos/resources
-
 
 volumes:
   bin: {}
   logs: {}
   resources: {}
-  grafana_data: {}
-  influxdb2: {}
 
 networks:
-  cwbackend:
+  cwnetwork:
+    name: cosmos_cwnetwork
     driver: bridge

@@ -22,20 +22,17 @@ RUN apt-get install -y python3 python3-pip
 #RUN apt-get install nodejs -y
 
 # Run COSMOS quick installer
-COPY ./cosmos-install.sh /root/cosmos/cosmos-install.sh
-COPY ./scripts /root/cosmos/scripts
-RUN chmod +x ~/cosmos/cosmos-install.sh
-RUN chmod +x ~/cosmos/scripts/cosmos-repos.sh
-RUN chmod +x ~/cosmos/scripts/cosmos-deploy.sh
-RUN chmod +x ~/cosmos/scripts/cosmos-build.sh
-# Fix to CFLF line ending for windows
-RUN sed -i 's/\r$//' /root/cosmos/cosmos-install.sh
-RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-repos.sh
-RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-deploy.sh
-RUN sed -i 's/\r$//' /root/cosmos/scripts/cosmos-build.sh
-
 WORKDIR /root/cosmos
-RUN /root/cosmos/cosmos-install.sh
+COPY ./scripts scripts
+RUN chmod +x scripts/cosmos-install.sh
+RUN chmod +x scripts/cosmos-repos.sh
+RUN chmod +x scripts/cosmos-deploy.sh
+RUN chmod +x scripts/cosmos-build.sh
+WORKDIR /root/cosmos/scripts/
+RUN ./cosmos-install.sh
+
+# Container start folder
+WORKDIR /root/cosmos
 
 # RUN PERPETUALLY
 CMD tail -f /dev/null
