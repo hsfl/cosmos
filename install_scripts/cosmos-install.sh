@@ -12,7 +12,7 @@ verbose='no' # 'yes' will print everything
 cosmosFolder=~/cosmos
 
 downloadRepositories='yes'
-cosmosBuild='no'
+cosmosBuild='yes'
 dockerBuild='no'
 dockerRun='no'
 

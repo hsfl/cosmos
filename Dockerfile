@@ -1,3 +1,5 @@
+# Dockerfile for building the development environment
+
 FROM ubuntu:20.04
 
 LABEL description="COSMOS Container" 
@@ -16,16 +18,17 @@ RUN apt-get install -y python3 python3-pip
 
 # Run COSMOS quick installer
 WORKDIR /root/cosmos
-COPY ./scripts scripts
-RUN chmod +x scripts/cosmos-install.sh
-RUN chmod +x scripts/cosmos-repos.sh
-RUN chmod +x scripts/cosmos-deploy.sh
-RUN chmod +x scripts/cosmos-build.sh
-WORKDIR /root/cosmos/scripts/
+COPY ./install_scripts install_scripts
+WORKDIR /root/cosmos/install_scripts
+RUN chmod +x cosmos-install.sh
+RUN chmod +x cosmos-repos.sh
+RUN chmod +x cosmos-deploy.sh
+RUN chmod +x cosmos-build.sh
 RUN ./cosmos-install.sh
 
 # Container start folder
 WORKDIR /root/cosmos
+ENV PATH="$PATH:/root/cosmos/bin"
 
 # RUN PERPETUALLY
 CMD tail -f /dev/null
