@@ -1,3 +1,4 @@
 [submodule "tools/cosmos-web"]
 	path = tools/cosmos-web
 	url = https://github.com/hsfl/cosmos-web.git
+    branch = master
