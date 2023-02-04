@@ -10,154 +10,101 @@ COSMOS is a system that is designed to primarily support the development and ope
 
 We recommend installing COSMOS via Docker. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
 
-* [Install Docker Desktop](https://www.docker.com/get-started/)
-* [Install Docker Compose](https://docs.docker.com/compose/install/) (Only needed for a Linux OS. Docker compose is automatically installed on Docker Desktop on Windows and macOS)
+**Windows/MacOS**
 
-Once you have Docker installed we are going to clone the cosmos repository. Open your terminal window, copy and run the following commands.
+* [Install Docker Desktop](https://www.docker.com/get-started/)
+
+**Linux**
+* [Install Docker Compose](https://docs.docker.com/compose/install/)
+
 
 ## Install Instructions (via Docker)
 
 **Windows Instructions:** 
 
-Open a command prompt window and enter the following two commands: 
+You can use the same installation instruction as Linux/MacOS after [installing Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Read the section **Check which version of WSL you are running** on the linked page to double check which distro you are using (Ubuntu recommended). Docker Desktop may change the default distro to something else, in which case you will need to set it to Ubuntu using the instructions in that section.
 
-On Windows: clone cosmos to c:/cosmos (recommended path)
-```shell
-git clone https://github.com/hsfl/cosmos.git c:/cosmos
-```
-Also clone cosmos-web
+**Linux/MacOS/WSL Instructions:** 
 
-```shell
-git clone https://github.com/hsfl/cosmos-web.git c:/cosmos/tools/cosmos-web
-```
+Open a terminal window (Linux/MacOS) or a WSL terminal (Windows) and enter the following command to clone this repository to the home folder.
 
-
-**Linux/macOS Instructions:** 
-
-Open a terminal window and enter the following two commands: 
-
-clone cosmos to the home folder ~/cosmos (recommended path)
-```shell
+Clone cosmos to the home folder ~/cosmos (recommended path)
+```bash
 git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
-Also clone cosmos-web
-
-```shell
-git clone https://github.com/hsfl/cosmos-web.git ~/cosmos/tools/cosmos-web
-```
-
 
 **AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
 
 
-1. Open terminal in your newly created cosmos folder. To build the cosmos image go into the newly created folder and run the Docker build command (this step may take several minutes to complete):
+1. Change directories to the newly cloned folder:
 
-Windows: 
 ```bash
-cd c:/cosmos
+cd ~/cosmos
 ```
 
-macOS:
-```bash
-cd cosmos
-```
-
-2. Copy the .env.example file and name it .env
-
-Windows:
-```bash
-copy .env.example .env
-```
-
-macOS/Linux:
+2. Copy the .env.example file and name it .env. Nothing needs to be changed as of yet.
 ```bash
 cp .env.example .env
 ```
 
-Then change the variables inside the .env file to configure your setup.
-If the next step fails with ```ERROR: Missing mandatory value for "environment" option``` be sure that the .env file was copied and created and filled out.
-
-3. Next, run the following command to get the containers up in the terminal, this builds the telegraf, influxdb, and grafana containers needed for COSMOS. (this process may take a few minutes)
-```
+3. Next, run the following command to get the containers running.
+```bash
 docker-compose up -d
 ```
-4. Follow the instruction on the [COSMOS Web repository page](https://github.com/hsfl/cosmos-web/blob/master/README.md) to install the Grafana-plugins for COSMOS Web
 
+You may confirm that the cosmos_core container is running by either checking the running containers in Docker Desktop, or by running the following command:
+```bash
+docker ps
+```
 
-5. Now that cosmos and cosmos-web have been installed
+> If you are getting an error that looks like this:
+> ```Got permission denied while trying to connect to the Docker daemon...```
+> This is because your user has not been added to the *docker* group that is required after the Docker installation. Run the following command to add the current user to the *docker* group:
+>
+> ```sudo usermod -aG docker $USER```
+>
+> Close the terminal window and reopen another terminal window to complete the process. You can confirm that your user is in the *docker* group by running the command:
+> ```bash
+> groups
+> ```
+> Retry steps 1-3
+
+## Demo
 
 Let's run agent_001 from the terminal: 
-```
-docker exec cosmos /root/cosmos/bin/agent_001
+```bash
+docker exec cosmos_core agent_001
 ```
 and run agent_002 from another terminal window:
-```
-docker exec cosmos /root/cosmos/bin/agent_002
-```
-if you want to enter the 'cosmos' container in bash mode:
-```
-docker exec -it cosmos bash
+```bash
+docker exec cosmos_core agent_002
 ```
 
-Let's start agent_cpu and test some more features:
+Agents are able to discover and communicate with each other.
 
+Let's also try running agent_cpu:
+```bash
+docker exec cosmos_core agent_cpu 
 ```
-cd bin
-./agent_cpu &
-./agent list
+
+We can see what agents are running with the *agent* program, giving it the argument *list*
+```bash
+docker exec cosmos_core agent list 
 ```
 
 ## Running COSMOS Web (via Docker)
 
-View grafana in the browser using this url
-http://localhost:3000/
-
-type user and pass (admin: admin), skip new pass (or change it if you want it)
-
-(old instructions: Follow the instructions on the [COSMOS Web Installation page](https://hsfl.github.io/cosmos-docs/pages/2-getting_started/install/cosmos-web.html))
-
-
-## Demo 
-
-Start COSMOS Docker
-
-Run agent_cpu
-```
-./comos/bin/agent_cpu 
-```
-
-
-Run propagator_simple. Propagate position and attitude in the satellite orbit for a specific node/satellite
-```
-./comos/bin/propagator_simple
-```
-
-Run agent_web? (WIP): State of Health collector agent.
-```
-./comos/bin/agent_web
-```
-
-Open Grafana to see the agent_cpu and propagator data by opening the standard widget.
-
+COSMOS Web is the graphical interface for COSMOS.
+Go to the [COSMOS Web setup page](https://github.com/hsfl/cosmos-web) for more instructions.
 
 ## Open the COSMOS source code
 - Start Visual Studio Code. [Download VSC from this link](https://code.visualstudio.com/)
-- Install extensions: 'Docker' and 'Remote Containers'
-- Click 'Open a Remote Window' on the bottom left corner of Visual Studio Code. 
-- Select 'Attach to Running Container'. Select the cosmos container
-- Select 'Open Folder' /root/cosmos. Click 'OK'
+- Install extensions: 'Remote Containers'
+- Click *Open a Remote Window* on the bottom left corner of Visual Studio Code. The icon looks like this:  <sub>></sub><sup><</sup>
+- Select *Attach to Running Container*. Select */cosmos_core*
+- Select *Open Folder* and go to /root/cosmos/source/core. Click *OK*.
+- Open a new terminal with *Terminal->New Terminal*
+- In the terminal, run the command ```git pull``` to get the latest changes.
 
 ## How do I continue from here?
 **Visit the COSMOS documentation to learn more about COSMOS:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
-
-# Notes
-
-Build cosmos docker separately
-```bash
-docker build -t cosmos .
-```
-
-Once the build has been completed we will run the 'cosmos' container. Let's create the docker container 'cosmos' in detach mode. 
-```
-docker run -t -d --name cosmos cosmos
-```
