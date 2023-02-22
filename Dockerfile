@@ -31,4 +31,4 @@ WORKDIR /root/cosmos
 ENV PATH="$PATH:/root/cosmos/bin"
 
 # RUN PERPETUALLY
-CMD tail -f /dev/null
+# CMD tail -f /dev/null

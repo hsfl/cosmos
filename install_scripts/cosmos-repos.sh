@@ -25,7 +25,7 @@ else
     then
     	# developer must have ssh keys enabled
 		echo "Cloning COSMOS/core from git@github.com:hsfl/cosmos-core.git"
-		git clone git@github.com:hsfl/cosmos-core.git
+		git clone git@github.com:hsfl/cosmos-core.git $cosmosFolder/source/core
     elif [[ "$usertype" == "embedded" ]]
     then
 		echo "Downloading COSMOS/core from https://github.com/hsfl/cosmos-core/zipball/master/"
@@ -41,10 +41,10 @@ else
 		fi
 
 		# unzip it (goes to a folder like cosmos-core-19271d3b9a1b)
-		unzip -q -d source core.zip
+		unzip -q -d source core.zip 
 
 		# rename the folder to core (cosmos-core-19271d3b9a1b -> core)
-		mv source/cosmos-project-core* source/core
+		mv source/cosmos-project-core* $cosmosFolder/source/core
 
 		# delete zip file
 		rm core.zip
@@ -68,7 +68,7 @@ else
     if [[ "$usertype" == "developer" ]]
     then
 		echo "Cloning COSMOS/nodes/cubesat1 from git@github.com:hsfl/cosmos-node-cubesat1.git"
-		git clone git@github.com:hsfl/cosmos-node-cubesat1.git nodes/cubesat1
+		git clone git@github.com:hsfl/cosmos-node-cubesat1.git $cosmosFolder/nodes/cubesat1
     elif [[ "$usertype" == "embedded" ]]
     then
 		echo "Downloading COSMOS/nodes/cubesat1 from https://github.com/hsfl/cosmos-node-cubesat1/zipball/master/"
@@ -86,7 +86,7 @@ else
 		unzip -q -d nodes cubesat1.zip
 
 		# rename the folder to nodes/neutron1 
-		mv nodes/cosmos-project-nodes-cubesat1* nodes/cubesat1
+		mv nodes/cosmos-project-nodes-cubesat1* $cosmosFolder/nodes/cubesat1
 
 		# delete zip file
 		rm cubesat1.zip
@@ -94,7 +94,7 @@ else
 		echo "Cloning COSMOS/nodes/cubesat1 from https://github.com/hsfl/cosmos-node-cubesat1.git"
 		#echo "Cloning with depth 1 and branch master only"
 		#git clone --depth 1 --branch master https://bitbucket.org/cosmos/nodes-cubesat1.git nodes/cubesat1
-		git clone https://github.com/hsfl/cosmos-node-cubesat1.git nodes/cubesat1
+		git clone https://github.com/hsfl/cosmos-node-cubesat1.git $cosmosFolder/nodes/cubesat1
 
     fi
 fi
@@ -110,7 +110,7 @@ else
     if [[ "$usertype" == "developer" ]]
     then
 		echo "Cloning COSMOS/resources from git@github.com:hsfl/cosmos-resources.git"
-		git clone git@github.com:hsfl/cosmos-resources.git resources
+		git clone git@github.com:hsfl/cosmos-resources.git $cosmosFolder/resources
     elif [[ "$usertype" == "embedded" ]]
     then
 		# download zip to save space
@@ -129,7 +129,7 @@ else
 		unzip -q resources.zip
 
 		# rename the folder to core 
-		mv cosmos-project-resources* resources
+		mv cosmos-project-resources* $cosmosFolder/resources
 
 		# delete zip file
 		rm resources.zip
@@ -137,7 +137,7 @@ else
 		echo "Cloning COSMOS/resources from https://github.com/hsfl/cosmos-resources.git"
 		#echo "Cloning with depth 1 and branch master only"
 		#git clone --depth 1 --branch master https://bitbucket.org/cosmos/resources.git resources
-		git clone https://github.com/hsfl/cosmos-resources.git resources
+		git clone https://github.com/hsfl/cosmos-resources.git $cosmosFolder/resources
 
     fi
 fi
@@ -153,8 +153,8 @@ else
     # use ssh
     if [[ "$usertype" == "developer" ]]
     then
-		echo "Cloning COSMOS/source/projects/template from git@bitbucket.org:cosmos-project/project-template.git"
-		git clone git@bitbucket.org:cosmos-project/project-template.git source/projects/template
+		echo "Cloning COSMOS/source/projects/template from git@github.com:hsfl/cosmos-project-template.git"
+		git clone git@github.com:hsfl/cosmos-project-template.git $cosmosFolder/source/projects/template
     elif [[ "$usertype" == "embedded" ]]
     then
 		# download zip to save space
@@ -173,12 +173,12 @@ else
 		unzip -q project-template.zip
 
 		# rename the folder to core 
-		mv cosmos-project-resources* project-template
+		mv cosmos-project-resources* $cosmosFolder/source/projects/template
 
 		# delete zip file
 		rm project-template.zip
     else # not a developer use https, just download zip file
-		echo "Cloning COSMOS/project-template from https://bitbucket.org/cosmos-project/project-template.git"
-		git clone https://bitbucket.org/cosmos-project/project-template.git source/projects/template
+		echo "Cloning COSMOS/project-template from https://github.com/hsfl/cosmos-project-template.git"
+		git clone https://github.com/hsfl/cosmos-project-template.git $cosmosFolder/source/projects/template
     fi
 fi

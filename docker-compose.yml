@@ -10,7 +10,6 @@ services:
         max-size: 10m
     networks:
       - cwnetwork
-    restart: unless-stopped
     volumes:
       - bin:/root/cosmos/bin
       - resources:/root/cosmos/resources
