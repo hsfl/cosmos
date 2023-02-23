@@ -1,8 +1,10 @@
-version: '3.6'
+version: "3.6"
 services:
   core:
     container_name: cosmos_core
     image: hsfl2/core
+    stdin_open: true
+    tty: true
     logging:
       driver: "local"
       options:
