@@ -28,9 +28,9 @@ You can use the same installation instruction as Linux/MacOS after [installing W
 
 Open a terminal window (Linux/MacOS) or a WSL terminal (Windows) and enter the following command to clone this repository to the home folder.
 
-Clone cosmos to the home folder ~/cosmos (recommended path)
+Clone cosmos to the home folder ~/cosmos-docker (recommended path)
 ```bash
-git clone https://github.com/hsfl/cosmos.git ~/cosmos
+git clone https://github.com/hsfl/cosmos.git ~/cosmos-docker
 ```
 
 **AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
@@ -39,7 +39,7 @@ git clone https://github.com/hsfl/cosmos.git ~/cosmos
 1. Change directories to the newly cloned folder:
 
 ```bash
-cd ~/cosmos
+cd ~/cosmos-docker
 ```
 
 2. Copy the .env.example file and name it .env. Nothing needs to be changed as of yet.
