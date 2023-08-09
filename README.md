@@ -49,7 +49,7 @@ cp .env.example .env
 
 3. Next, run the following command to get the containers running.
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 You may confirm that the cosmos_core container is running by either checking the running containers in Docker Desktop, or by running the following command:
