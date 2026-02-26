@@ -88,9 +88,9 @@ Go to the [COSMOS Web setup page](https://github.com/hsfl/cosmos-web) for more i
 
 ## Open the COSMOS source code
 - Start Visual Studio Code. [Download VSC from this link](https://code.visualstudio.com/)
-- Install extensions: 'Remote Containers'
+- Select Extensions from the left side icons. Install extension: 'Dev Containers'
 - Click *Open a Remote Window* on the bottom left corner of Visual Studio Code. The icon looks like this:  <sub>></sub><sup><</sup>
-- Select *Attach to Running Container*. Select */cosmos_core*
+- Select *Attach to Running Container*. Select */cosmos*
 - Select *Open Folder* and go to /root/cosmos/source/core. Click *OK*.
 - Open a new terminal with *Terminal->New Terminal*
 - In the terminal, run the command ```git pull``` to get the latest changes.
