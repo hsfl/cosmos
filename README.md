@@ -4,23 +4,12 @@ COSMOS is a software framework for operating distributed robotic systems, with a
 
 <img src="https://user-images.githubusercontent.com/1541868/160047280-010609a7-596a-4eef-a3d7-5ccc59dbb247.PNG" width=100%>
 
-## Getting Started
-
-We recommend installing COSMOS via Docker. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
-
-**Windows/MacOS**
-
+## Step1. Install Docker
+We use Docker to build COSMOS core and the COSMOS tools. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
 * [Install Docker Desktop](https://www.docker.com/get-started/)
 
-**Linux**
-* [Install Docker Compose](https://docs.docker.com/compose/install/)
-
-
-## Install Instructions (via Docker)
-
 **Windows Instructions:** 
-
-You can use the same installation instruction as Linux/MacOS after [installing Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Read the section **Check which version of WSL you are running** on the linked page to double check which distro you are using (Ubuntu recommended). Docker Desktop may change the default distro to something else, in which case you will need to set it to Ubuntu using the instructions in that section.
+[install Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Read the section **Check which version of WSL you are running** on the linked page to double check which distro you are using (Ubuntu is recommended). Docker Desktop may change the default distro to something else, in which case you will need to set it to Ubuntu using the instructions in that section. After WSL has been installed you can use the same installation instruction as Linux/MacOS after
 
 **Linux/MacOS/WSL Instructions:** 
 
