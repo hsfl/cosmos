@@ -4,79 +4,81 @@ COSMOS is a software framework for operating distributed robotic systems, with a
 
 <img src="https://user-images.githubusercontent.com/1541868/160047280-010609a7-596a-4eef-a3d7-5ccc59dbb247.PNG" width=100%>
 
-## Step1. Install Docker
-We use Docker to build COSMOS core and the COSMOS tools. By using Docker containers you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
-* [Install Docker Desktop](https://www.docker.com/get-started/)
+## Step 1. Install Docker
+We use Docker to build the COSMOS core and the COSMOS tools. By using Docker containers, you will get all the COSMOS dependencies automatically resolved. This process works well for users and developers.
 
-**Windows Instructions:** 
-[install Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Read the section **Check which version of WSL you are running** on the linked page to double check which distro you are using (Ubuntu is recommended). Docker Desktop may change the default distro to something else, in which case you will need to set it to Ubuntu using the instructions in that section. After WSL has been installed you can use the same installation instruction as Linux/MacOS after
+> [!Warning]
+> **Instructions for Windows users only:**
+> Before you install Docker, you will first need to install [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) with the recommended default Ubuntu 24.04 distro. 
 
-**Linux/MacOS/WSL Instructions:** 
+**Instructions for all users:** 
+* [Click here to install Docker Desktop](https://www.docker.com/get-started/)
+
+## Step 2. Clone the COSMOS repository
 
 Open a terminal window (Linux/MacOS) or a WSL terminal (Windows) and enter the following command to clone this repository to the home folder.
 
-Clone cosmos to the home folder ~/cosmos-docker (recommended path)
+Clone the cosmos repository to the home folder ~/cosmos (recommended path)
 ```bash
-git clone https://github.com/hsfl/cosmos.git ~/cosmos-docker
+git clone https://github.com/hsfl/cosmos.git ~/cosmos
 ```
 
-**AFTER you have completed the prior steps, continue with the following steps. Note these steps are the same for both operating systems.** 
-
-
-1. Change directories to the newly cloned folder:
+Change directories to the newly cloned folder:
 
 ```bash
-cd ~/cosmos-docker
+cd ~/cosmos
 ```
 
-2. Copy the .env.example file and name it .env. Nothing needs to be changed as of yet.
+## Step 3. Build the Docker Image 
+
+This step may take several minutes (expect ~5 to 10 m) as it installs the various dependencies and builds the cosmos binaries. The docker command builds a new Docker image with name "cosmos_u24" as a reference to Ubuntu 24.04
+```
+docker build -t cosmos_u24 .
+```
+While you wait you can check the various steps that are run from this [Docker file](https://github.com/hsfl/cosmos/blob/master/Dockerfile). 
+
+Run a new container 'cosmos' from image 'cosmos_u24' in interactive mode to check if the image was built correctly.
+```
+docker run -it --name cosmos cosmos_24
+```
+
+Run the 'agent' program just to test that cosmos was correctly installed (TODO: change to a welcome cosmos program) 
+```
+agent
+```
+
+Now exit the Docker container
+```
+exit
+```
+This completes the basic installation of COSMOS core.
+
+## Step 4. Run Demo
+
+Let's start the docker container again
+```
+docker start cosmos
+```
+
+Run agent_001 from the terminal: 
 ```bash
-cp .env.example .env
+docker exec cosmos agent_001
 ```
-
-3. Next, run the following command to get the containers running.
+From another terminal window run agent_002:
 ```bash
-docker compose up -d
+docker exec cosmos agent_002
 ```
 
-You may confirm that the cosmos_core container is running by either checking the running containers in Docker Desktop, or by running the following command:
-```bash
-docker ps
-```
-
-> If you are getting an error that looks like this:
-> ```Got permission denied while trying to connect to the Docker daemon...```
-> This is because your user has not been added to the *docker* group that is required after the Docker installation. Run the following command to add the current user to the *docker* group:
->
-> ```sudo usermod -aG docker $USER```
->
-> Close the terminal window and reopen another terminal window to complete the process. You can confirm that your user is in the *docker* group by running the command:
-> ```bash
-> groups
-> ```
-> Retry steps 1-3
-
-## Demo
-
-Let's run agent_001 from the terminal: 
-```bash
-docker exec cosmos_core agent_001
-```
-and run agent_002 from another terminal window:
-```bash
-docker exec cosmos_core agent_002
-```
-
-Agents are able to discover and communicate with each other.
+You can observe that the two agents can discover and communicate with one another.
 
 Let's also try running agent_cpu:
 ```bash
-docker exec cosmos_core agent_cpu 
+docker exec cosmos agent_cpu 
 ```
 
 We can see what agents are running with the *agent* program, giving it the argument *list*
 ```bash
-docker exec cosmos_core agent list 
+docker exec cosmos agent list 
 ```
 
 ## Running COSMOS Web (via Docker)
