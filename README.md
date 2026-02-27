@@ -37,9 +37,9 @@ docker build -t cosmos_u24 .
 ```
 While you wait you can check the various steps that are run from this [Docker file](https://github.com/hsfl/cosmos/blob/master/Dockerfile). 
 
-Run a new container 'cosmos' from image 'cosmos_u24' in interactive mode to check if the image was built correctly.
+Run a new container 'cosmos' from image 'cosmos_u24' in interactive mode to check if the image was built correctly. We'll use hostname 'sat1' to indicate this will run a simulation of a generic satellite #1. 
 ```
-docker run -it --name cosmos cosmos_u24
+docker run --hostname sat1 -it --name cosmos cosmos_u24
 ```
 
 Run the 'agent' program just to test that cosmos was correctly installed 
