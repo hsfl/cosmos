@@ -39,14 +39,18 @@ While you wait you can check the various steps that are run from this [Docker fi
 
 Run a new container 'cosmos' from image 'cosmos_u24' in interactive mode to check if the image was built correctly.
 ```
-docker run -it --name cosmos cosmos_24
+docker run -it --name cosmos cosmos_u24
 ```
 
-Run the 'agent' program just to test that cosmos was correctly installed (TODO: change to a welcome cosmos program) 
+Run the 'agent' program just to test that cosmos was correctly installed 
 ```
 agent
 ```
-
+You should see a simple response with the agent program arguments
+```
+root@29c377c10f6f:~/cosmos# agent
+Usage: agent [ list | dump [soh, beat, ###] | node_name agent_name "request [ arguments ]" ]
+```
 Now exit the Docker container
 ```
 exit
@@ -81,12 +85,19 @@ We can see what agents are running with the *agent* program, giving it the argum
 docker exec cosmos agent list 
 ```
 
-## Running COSMOS Web (via Docker)
+Check the commands available for each agent by querying the 'node' and 'agent_name'
+```
+docker exec cosmos agent sat_111 agent_001 
+```
 
-COSMOS Web is the graphical interface for COSMOS.
-Go to the [COSMOS Web setup page](https://github.com/hsfl/cosmos-web) for more instructions.
+Let's turn off the agents by running the 'agent' program with the aruments: 'node' and 'agent_name' and 'shutdown'
+```
+docker exec cosmos agent sat_111 agent_001 shutdown
+docker exec cosmos agent sat_001 agent_002 shutdown
+docker exec cosmos agent 29c377c10f6f cpu shutdown #where the node `29c377c10f6f` will differ
+```
 
-## Open the COSMOS source code
+## Step 5. Open the COSMOS source code
 - Start Visual Studio Code. [Download VSC from this link](https://code.visualstudio.com/)
 - Select Extensions from the left side icons. Install extension: 'Dev Containers'
 - Click *Open a Remote Window* on the bottom left corner of Visual Studio Code. The icon looks like this:  <sub>></sub><sup><</sup>
@@ -97,3 +108,8 @@ Go to the [COSMOS Web setup page](https://github.com/hsfl/cosmos-web) for more i
 
 ## How do I continue from here?
 **Visit the COSMOS documentation to learn more about COSMOS:** [https://hsfl.github.io/cosmos-docs/](https://hsfl.github.io/cosmos-docs/). The website contains the getting started guides, tutorials, examples and more!
+
+## Running COSMOS Web (currently deprecated)
+
+COSMOS Web is the graphical interface for COSMOS.
+Go to the [COSMOS Web setup page](https://github.com/hsfl/cosmos-web) for more instructions.
